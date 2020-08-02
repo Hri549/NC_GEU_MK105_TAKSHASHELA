@@ -92,5 +92,13 @@ def returna():
 	
 	return render_template('result.html')
 
+
+
+
+@app.route("/trending",methods = ['GET','POST'])
+def trending():
+	
+	return render_template('trending.html')
+
 app.run(debug = True)
 
