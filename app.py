@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request, session, redirect, url_for
+from flask import Flask,render_template,request, session, redirect, url_for,flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
@@ -66,7 +66,7 @@ def login():
 		if(result):
 			return redirect(url_for('home'))
 		else:
-			flash(u"Wrong email or password","warning")
+			flash(u"Wrong email or password!!!","warning")
 	return render_template('login.html')
 	
 @app.route("/home",methods = ['GET','POST'])
