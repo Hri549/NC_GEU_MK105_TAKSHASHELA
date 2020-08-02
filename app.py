@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
+import matplotlib.pyplot as plt
+
 from flask_wtf import FlaskForm,RecaptchaField
 '''from wtforms import (StringField,SubmitField,
                      DateTimeField, RadioField,
@@ -78,7 +80,17 @@ def home():
 		Ucty = str(request.form.get('city'))
 		Usal = str(request.form.get('Salary'))
 		
+		data = [4,5,4,8,7]
+		plt.plot(data)
+		plt.savefig('static/img/result.png')
+		return redirect(url_for('returna'))
+		
 	return render_template('home.html')
+	
+@app.route("/result",methods = ['GET','POST'])
+def returna():
+	
+	return render_template('result.html')
 
 app.run(debug = True)
 
