@@ -80,11 +80,10 @@ def home():
 		Ucty = str(request.form.get('city'))
 		Usal = str(request.form.get('Salary'))
 		
-		data = [4,5,4,8,7]
-		plt.plot(data)
-		plt.savefig('static/img/result.png')
 		return redirect(url_for('returna'))
-		
+	data = [9,5,7,8,1]
+	plt.plot(data)
+	plt.savefig('static/img/result.png')
 	return render_template('home.html')
 	
 @app.route("/result",methods = ['GET','POST'])
