@@ -50,7 +50,7 @@
                 <div class="col-sm-6">
 
                     <div class="thumbnail">
-                        <img src="img/jobs.jpeg" alt="">
+                          <img src="{{url_for('static',filename = 'img/result.png')}}" alt="">
 
                     </div>
                     </a>
@@ -80,47 +80,45 @@
 
 
         <div class="container">
-           <center> <h2>Would you like to search again?? Click <a href="home.html">Here</a></h2></center>
+           <center> <h2>Would you like to search again?? Click <a href="/home">Here</a></h2></center>
         </div>
 
 <br>
         <!--Item categories listing-->
        
         
-      <div class="container-fluid" style="background-color: rgb(223, 223, 223);">
-        <div class="row text-center" id="item_list">
-            <div class="col-sm-4">
+           <div class="container-fluid" style="background-color: rgb(223, 223, 223);">
+            <div class="row text-center" id="item_list">
+                <div class="col-sm-4">
 
-                <div class="thumbnail">
-                    <img src="img/gov.png" alt="">
+                    <div class="thumbnail">
+                        <img src="{{url_for('static',filename = 'img/gov.png')}}" alt="">
 
+                    </div>
+                    </a>
                 </div>
-                </a>
-            </div>
 
-            <div class="col-sm-4">
+                <div class="col-sm-4">
 
-                <div class="thumbnail">
-                    <img src="img/sih.jpg" alt="">
+                    <div class="thumbnail">
+                        <img src="{{url_for('static',filename = 'img/sih.jpg')}}" alt="">
 
+                    </div>
+                    </a>
                 </div>
-                </a>
-            </div>
 
-            <div class="col-sm-4">
+                <div class="col-sm-4">
 
-                <div class="thumbnail">
-                    <img src="img/bvp.png" alt="">
+                    <div class="thumbnail">
+                        <img src="{{url_for('static',filename = 'img/bvp.png')}}" alt="">
 
+                    </div>
+                    </a>
                 </div>
-                </a>
             </div>
         </div>
-    </div>
-   
-    <!--Item categories listing end-->
-
-
+       
+       <!--Item categories listing end-->
 
 
        <!--Footer-->
