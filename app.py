@@ -94,7 +94,13 @@ def home():
 		model=xgb.XGBRegressor()
 		model.fit(X,y)
 		pre = model.predict(X_pred)
-		plt.plot(pre)
+		plt.style.use("fivethirtyeight")
+		month=[x for x in range(1,13)]
+		plt.figure(figsize = (9,7))
+		plt.plot(month,pre)
+		plt.xlabel("Months")
+		plt.ylabel("Vacancy")
+		plt.title("Predicted Values")
 		global new_graph_name
 		new_graph_name = "graph" + str(time.time()) + ".png"
 	
