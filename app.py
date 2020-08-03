@@ -2,7 +2,7 @@ from flask import Flask,render_template,request, session, redirect, url_for,flas
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
-
+import os,time
 import matplotlib.pyplot as plt
 
 from flask_wtf import FlaskForm,RecaptchaField
@@ -81,15 +81,22 @@ def home():
 		Usal = str(request.form.get('Salary'))
 		
 		return redirect(url_for('returna'))
-	data = [9,5,7,8,1]
-	plt.plot(data)
-	plt.savefig('static/img/result.png')
+	
 	return render_template('home.html')
 	
 @app.route("/result",methods = ['GET','POST'])
 def returna():
+	data = [9,7,2,8,1]
+	plt.plot(data)
+	new_graph_name = "graph" + str(time.time()) + ".png"
 	
-	return render_template('result.html')
-
+	for filename in os.listdir('static/'):
+		if filename.startswith('graph_'):
+			os.remove('static/' + filename)
+	
+	plt.savefig('static/' + new_graph_name)
+	
+	return render_template('result.html',graph = new_graph_name)
+    
 app.run(debug = True)
 
