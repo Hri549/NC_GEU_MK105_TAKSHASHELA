@@ -90,6 +90,7 @@ def returna():
 	plt.plot(data)
 	new_graph_name = "graph" + str(time.time()) + ".png"
 	
+
 	for filename in os.listdir('static/'):
 		if filename.startswith('graph_'):
 			os.remove('static/' + filename)
@@ -97,6 +98,14 @@ def returna():
 	plt.savefig('static/' + new_graph_name)
 	
 	return render_template('result.html',graph = new_graph_name)
-    
+
+
+
+
+@app.route("/trending",methods = ['GET','POST'])
+def trending():
+	
+	return render_template('trending.html')
+
 app.run(debug = True)
 
