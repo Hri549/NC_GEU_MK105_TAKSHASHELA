@@ -33,32 +33,30 @@ def Convert(df):## train and test set
 ## pridicting data Set
 
 
-def fun(salary, job_label,Sector_label,City_label, Education, Month=0):
-
-    #Month=0
-     #encod=df[["Location","Job_Description","Sector","Eligibility","salary","Month"]
-    education_encoded=cv.transform([Education])
-
-    job_int=job_encoder.transform([job_label])#return an array
-
-   # print(job_int)
-
-    city_int=location_encoder.transform([City_label])
-
-    sector_int=Sector_encoder.transform([Sector_label])
-
-    df1=pd.DataFrame([[city_int[0],job_int[0],sector_int[0],int(salary),Month]],columns=["Location","Job_Description","Sector","salary","Month"])#give the data frame which have all the labeles variable
-
-
-    df2=pd.DataFrame(education_encoded.todense(),columns=cv.get_feature_names())# gives dataframe by encoding EDUCATION
-
-    df1=pd.concat([df1,df2],axis=1)#Combined data frame which is to be predicted
-    topre2 = df1
-    for i in range(11):
-    	df1 = pd.concat([df1,topre2],axis = 0)
-    for i in range(12):
-    	df1.iloc[i,0] = i+1
-    return df1
+def fun(salary1, job_label,Sector_label,City_label, Education, Month=0):
+	
+	salary = int(salary1)
+	salary = 10*salary
+	
+	education_encoded=cv.transform([Education])
+	
+	job_int=job_encoder.transform([job_label])
+	
+	city_int=location_encoder.transform([City_label])
+	
+	sector_int=Sector_encoder.transform([Sector_label])
+	
+	df1=pd.DataFrame([[city_int[0],job_int[0],sector_int[0],salary,Month]],columns=["Location","Job_Description","Sector","salary","Month"])
+	
+	df2=pd.DataFrame(education_encoded.todense(),columns=cv.get_feature_names())
+	
+	df1=pd.concat([df1,df2],axis=1)
+	topre2 = df1
+	for i in range(11):
+		df1 = pd.concat([df1,topre2],axis = 0)
+	for i in range(12):
+		df1.iloc[i,0] = i+1
+	return df1
     
 '''def Convert(df):
     enco = df[["Month","Location","Job_Description","Sector","salary","Eligibility"]]

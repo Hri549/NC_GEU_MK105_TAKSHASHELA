@@ -86,17 +86,14 @@ def home():
 		Ucty = str(request.form.get('city'))
 
 		Usal = request.form.get('Salary')
-		print(Usal, Uedu)
+		
 		X = func.Convert(data)
 		
 		y = data["vacancies"]
-		sal = 10*Usal
-		X_pred = func.fun(sal,Ujob,Usec,Ucty,Uedu)
+		X_pred = func.fun(Usal,Ujob,Usec,Ucty,Uedu)
 		model=xgb.XGBRegressor()
 		model.fit(X,y)
 		pre = model.predict(X_pred)
-		print(X_pred)
-		print(pre)
 		plt.plot(pre)
 		global new_graph_name
 		new_graph_name = "graph" + str(time.time()) + ".png"
