@@ -19,7 +19,7 @@ from flask_wtf import FlaskForm,RecaptchaField
 
 from wtforms.validators import DataRequired
 
-
+new_graph_name = "--"
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/sih_data'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -89,19 +89,22 @@ def home():
 		Usal = request.form.get('Salary')
 		print(Usal, Uedu)
 		X = func.Convert(data)
-		print(X.head())
+		
 		y = data["vacancies"]
 		sal = 10*Usal
-		X_pred = func.make_data(sal,Ujob,Usec,Ucty,Uedu)
+		X_pred = func.fun(sal,Ujob,Usec,Ucty,Uedu)
 		model=xgb.XGBRegressor()
 		model.fit(X,y)
 		pre = model.predict(X_pred)
+		print(X_pred)
+		print(pre)
 		plt.plot(pre)
+		global new_graph_name
 		new_graph_name = "graph" + str(time.time()) + ".png"
 	
 
 		for filename in os.listdir('static/img'):
-			if filename.startswith('graph_'):
+			if filename.startswith('graph'):
 				os.remove('static/img' + filename)
 	
 		plt.savefig('static/img' + new_graph_name)

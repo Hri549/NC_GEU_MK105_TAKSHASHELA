@@ -20,7 +20,7 @@ cv=CountVectorizer()
 #cv.fit_transform(data["Eli"])
 
 def Convert(df):## train and test set
-    encod=df[["Location","Job_Description","salary","Month"]]
+    encod=df[["Location","Job_Description","Sector","salary","Month"]]
   #  encod=pd.DataFrame()
     encod["Location"]=location_encoder.fit_transform(df["Location"])
     encod["Job_Description"]=job_encoder.fit_transform(df["Job_Description"])
@@ -53,7 +53,11 @@ def fun(salary, job_label,Sector_label,City_label, Education, Month=0):
     df2=pd.DataFrame(education_encoded.todense(),columns=cv.get_feature_names())# gives dataframe by encoding EDUCATION
 
     df1=pd.concat([df1,df2],axis=1)#Combined data frame which is to be predicted
-
+    topre2 = df1
+    for i in range(11):
+    	df1 = pd.concat([df1,topre2],axis = 0)
+    for i in range(12):
+    	df1.iloc[i,0] = i+1
     return df1
     
 '''def Convert(df):
