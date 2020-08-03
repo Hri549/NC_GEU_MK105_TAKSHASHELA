@@ -85,6 +85,7 @@ def home():
 		Ujob = str(request.form.get('job-title'))
 		Usec = str(request.form.get('sector'))
 		Ucty = str(request.form.get('city'))
+
 		Usal = request.form.get('Salary')
 		print(Usal, Uedu)
 		X = func.Convert(data)
@@ -104,12 +105,14 @@ def home():
 				os.remove('static/img' + filename)
 	
 		plt.savefig('static/img' + new_graph_name)
+
 		return redirect(url_for('returna'))
 	
 	return render_template('home.html')
 	
 @app.route("/result",methods = ['GET','POST'])
 def returna():
+<<<<<<< HEAD
 	'''data = [9,7,2,8,1]
 	plt.plot(data)
 	new_graph_name = "graph" + str(time.time()) + ".png"
@@ -122,6 +125,13 @@ def returna():
 	plt.savefig('static/' + new_graph_name)'''
 	
 	return render_template('result.html',graph = new_graph_name)
+=======
+
+	data = [4,5,8,9,0]
+	plt.plot(data)
+	plt.savefig('static/img/result.png')
+	return render_template('result.html')
+>>>>>>> 780164681130e740e3972d251bd71efab3ed1af7
 
 
 
