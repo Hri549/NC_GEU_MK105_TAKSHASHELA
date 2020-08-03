@@ -2,8 +2,15 @@ from flask import Flask,render_template,request, session, redirect, url_for,flas
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
-
+import os,time
 import matplotlib.pyplot as plt
+
+import Sih_try as func
+
+import pandas as pd
+import xgboost as xgb
+
+data = pd.read_csv("DataSet.csv")
 
 from flask_wtf import FlaskForm,RecaptchaField
 '''from wtforms import (StringField,SubmitField,
@@ -78,22 +85,46 @@ def home():
 		Ujob = str(request.form.get('job-title'))
 		Usec = str(request.form.get('sector'))
 		Ucty = str(request.form.get('city'))
-		Usal = str(request.form.get('Salary'))
-		
-		#data = [4,5,4,8,7]
-		#plt.plot(data)
-		#plt.savefig('static/img/result.png')
+
+		Usal = request.form.get('Salary')
+		print(Usal, Uedu)
+		X = func.Convert(data)
+		print(X.head())
+		y = data["vacancies"]
+		sal = 10*Usal
+		X_pred = func.make_data(sal,Ujob,Usec,Ucty,Uedu)
+		model=xgb.XGBRegressor()
+		model.fit(X,y)
+		pre = model.predict(X_pred)
+		plt.plot(pre)
+		new_graph_name = "graph" + str(time.time()) + ".png"
+	
+
+		for filename in os.listdir('static/img'):
+			if filename.startswith('graph_'):
+				os.remove('static/img' + filename)
+	
+		plt.savefig('static/img' + new_graph_name)
+
 		return redirect(url_for('returna'))
-		
+	
 	return render_template('home.html')
 	
 @app.route("/result",methods = ['GET','POST'])
 def returna():
 
-	data = [4,5,8,9,0]
+	'''data = [9,7,2,8,1]
 	plt.plot(data)
-	plt.savefig('static/img/result.png')
-	return render_template('result.html')
+	new_graph_name = "graph" + str(time.time()) + ".png"
+	
+
+	for filename in os.listdir('static/'):
+		if filename.startswith('graph_'):
+			os.remove('static/' + filename)
+	
+	plt.savefig('static/' + new_graph_name)'''
+	
+	return render_template('result.html',graph = new_graph_name)
 
 
 
