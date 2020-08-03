@@ -19,7 +19,6 @@ from flask_wtf import FlaskForm,RecaptchaField
 
 from wtforms.validators import DataRequired
 
-new_graph_name = "--"
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/sih_data'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -103,11 +102,11 @@ def home():
 		new_graph_name = "graph" + str(time.time()) + ".png"
 	
 
-		for filename in os.listdir('static/img'):
+		for filename in os.listdir('static/'):
 			if filename.startswith('graph'):
-				os.remove('static/img' + filename)
+				os.remove('static/' + filename)
 	
-		plt.savefig('static/img' + new_graph_name)
+		plt.savefig('static/' + new_graph_name)
 
 		return redirect(url_for('returna'))
 	
@@ -126,6 +125,7 @@ def returna():
 			os.remove('static/' + filename)
 	
 	plt.savefig('static/' + new_graph_name)'''
+	global new_graph_name
 	
 	return render_template('result.html',graph = new_graph_name)
 
