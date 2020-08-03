@@ -20,7 +20,7 @@ cv=CountVectorizer()
 #cv.fit_transform(data["Eli"])
 
 def Convert(df):## train and test set
-    encod=df[["Location","Job_Description","Sector","Eligibility","salary","Month"]]
+    encod=df[["Location","Job_Description","salary","Month"]]
   #  encod=pd.DataFrame()
     encod["Location"]=location_encoder.fit_transform(df["Location"])
     encod["Job_Description"]=job_encoder.fit_transform(df["Job_Description"])
