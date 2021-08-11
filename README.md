@@ -28,7 +28,7 @@ Then our work for connectivity started with the help of flask where we have conn
  In login page credentials we fulfilled all the criteria which will redirect to the main page and if not, message will be flashed with wrong credentials, where the credentials will be extracted from MySQL database to check if it is correct.
 We have developed our main page which will take various inputs which will be processed with the backend connectivity. In which we have also worked on the result page where we will show the predicted output with different functions
 
-**Particpants:
+**Team**:
 @Kpraful
 @spark0308
 @Mmanish07
